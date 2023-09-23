@@ -25,7 +25,8 @@ export default async function handler(req, res) {
             });
         }
         try {
-            const customer = await Customer.create(data);
+            console.log(data)
+            await Customer.create(data);
             return res.status(201).json({
                 success: true,
                 status: 201,

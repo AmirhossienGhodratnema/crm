@@ -1,13 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const Customer = Schema({
-    name: { type: String },
-    lastName: { type: String },
-    email: { type: String },
-    phone: { type: String, },
-    address: { type: String, },
-    postalCode: { type: String, },
-    product: { type: Array, default: [] },
-}, { timestamps: true })
+const customerSchema = new Schema({
+    name: { type: String, required: true, minLength: 1 },
+    lastName: { type: String, required: true, minLength: 1 },
+    email: { type: String, required: true, minLength: 1 },
+    phone: { type: String },
+    address: { type: String },
+    postalCode: { type: Number },
+    products: { type: Array, default: [] },
+}, { timestamps: true });
 
-module.exports = model('Customer', Customer);
+const Customer = models.Customer || model("Customer", customerSchema);
+export default Customer;

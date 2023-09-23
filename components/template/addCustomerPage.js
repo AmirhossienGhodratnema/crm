@@ -1,17 +1,21 @@
 import { useState } from "react"
 import Form from "../module/form"
+import { useRouter } from "next/router";
 
 
 
 export default function AddCustomerPage() {
+    const router = useRouter();
     const [form, setForm] = useState({
-        name: '',
-        lastName: '',
-        email: '',
+        name: 'Amirhossein',
+        lastName: 'Ghodratnema',
+        email: 'Amirhosseinghodratnema@gmail.com',
         addressc: '',
         postalCode: '',
         product: '',
     });
+
+    console.log('form', form)
     const cancelHandler = () => {
         console.log('Cancel handler');
     };
@@ -22,8 +26,8 @@ export default function AddCustomerPage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ form })
         });
-        const data = await res.json();
-        console.log('data', data);
+        const { success, status } = await res.json();
+        if (status == 201 && success == true) router.push('/')
     };
 
 

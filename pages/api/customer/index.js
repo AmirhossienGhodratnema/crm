@@ -17,7 +17,6 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
         const data = req.body.form;
-        console.log('data', data)
         if (!data.name || !data.lastName || !data.email) {
             return res.status(400).json({
                 success: false,

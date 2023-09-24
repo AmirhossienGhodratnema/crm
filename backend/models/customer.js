@@ -7,7 +7,7 @@ const customerSchema = new Schema({
     phone: { type: String },
     address: { type: String },
     postalCode: { type: Number },
-    products: { type: Array, default: [] },
+    product: { type: [Object], default: [] },
 }, { timestamps: true });
 
 const Customer = models.Customer || model("Customer", customerSchema);

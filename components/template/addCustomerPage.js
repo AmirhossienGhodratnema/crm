@@ -7,17 +7,25 @@ import { useRouter } from "next/router";
 export default function AddCustomerPage() {
     const router = useRouter();
     const [form, setForm] = useState({
-        name: 'Amirhossein',
-        lastName: 'Ghodratnema',
-        email: 'Amirhosseinghodratnema@gmail.com',
-        addressc: '',
+        name: '',
+        lastName: '',
+        email: '',
+        address: '',
         postalCode: '',
-        product: '',
+        product: [],
     });
 
-    console.log('form', form)
+
     const cancelHandler = () => {
-        console.log('Cancel handler');
+        setForm({
+            name: '',
+            lastName: '',
+            email: '',
+            address: '',
+            postalCode: '',
+            product: [],
+        });
+        router.push('/');
     };
 
     const saveHandler = async () => {
@@ -26,7 +34,7 @@ export default function AddCustomerPage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ form })
         });
-        const { success, status } = await res.json();
+        const { success, status, message } = await res.json();
         if (status == 201 && success == true) router.push('/')
     };
 
@@ -34,7 +42,7 @@ export default function AddCustomerPage() {
     return (
         <div className="customer-page">
             <h4>Add New Customer</h4>
-            <Form />
+            <Form form={form} setForm={setForm} />
             <div className="customer-page__buttons">
                 <button className="first" onClick={cancelHandler}>
                     Cancel

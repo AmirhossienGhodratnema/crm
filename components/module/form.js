@@ -4,11 +4,13 @@ import ItemList from "./itemList";
 // , value, onChange
 
 export default function Form({ form, setForm }) {
+    console.log(form)
+    
     const changeHandler = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
-
     }
+
     return (
         <div>
             <FormInput

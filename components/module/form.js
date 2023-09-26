@@ -4,7 +4,7 @@ import ItemList from "./itemList";
 // , value, onChange
 
 export default function Form({ form, setForm }) {
-    
+
     const changeHandler = (e) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
@@ -41,6 +41,13 @@ export default function Form({ form, setForm }) {
                 label='Address'
                 type='text'
                 value={form.address}
+                onChange={changeHandler}
+            />
+            <FormInput
+                name='phone'
+                label='Phone'
+                type='text'
+                value={form.phone}
                 onChange={changeHandler}
             />
 

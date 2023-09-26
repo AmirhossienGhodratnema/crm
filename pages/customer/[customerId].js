@@ -1,8 +1,9 @@
-import CustomerEditPage from "@/components/template/customerEditPage";
+import CustomerDetailsPage from "@/components/template/customerDetailsPage";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function EditCustomer() {
+export default function Index() {
+
     const [data, setData] = useState(null);
     const router = useRouter();
     const { query: { customerId }, isReady } = router;
@@ -15,5 +16,6 @@ export default function EditCustomer() {
     }, [isReady]);
 
 
-    if (data) return <CustomerEditPage data={data} id={customerId} />
-};
+   if(data) return <CustomerDetailsPage data={data} id={customerId} />;
+}
+

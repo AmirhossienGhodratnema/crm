@@ -11,6 +11,7 @@ export default function AddCustomerPage() {
         lastName: '',
         email: '',
         address: '',
+        phone: '',
         postalCode: '',
         product: [],
     });
@@ -35,6 +36,7 @@ export default function AddCustomerPage() {
             body: JSON.stringify({ form })
         });
         const { success, status, message } = await res.json();
+        console.log(message)
         if (status == 201 && success == true) router.push('/')
     };
 

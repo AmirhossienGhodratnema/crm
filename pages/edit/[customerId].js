@@ -15,5 +15,5 @@ export default function EditCustomer() {
     }, [isReady]);
 
 
-    if (data) return <CustomerEditPage data={data} />
+    if (data) return <CustomerEditPage data={data} id={customerId} />
 };

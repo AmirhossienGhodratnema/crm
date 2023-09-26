@@ -17,6 +17,13 @@ export default async function handler(req, res) {
     if (req.method === 'PATCH') {
         const { customerId } = req.query;
         const { name, lastName, email, phone, postalCode, address, product } = req.body;
+        if (!name || !lastName || !email) {
+            return res.status(400).json({
+                success: false,
+                status: 400,
+                message: 'name, lastName, email is require...'
+            });
+        };
         const customer = await Customer.find({ _id: customerId });
         if (!customer) return res.status(400).json({
             success: false,
@@ -25,7 +32,7 @@ export default async function handler(req, res) {
         });
         const result = await Customer.updateOne({ _id: customerId },
             { name, lastName, email, phone, postalCode, address, product });
-            
+
         if (result.modifiedCount == 0) return res.status(500).json({
             success: false,
             status: 500,
